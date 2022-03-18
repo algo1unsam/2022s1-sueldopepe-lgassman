@@ -9,3 +9,86 @@ test "sueldo neto de pepe gerente" {
 	pepe.categoria(gerente)
 	assert.equals(15000, pepe.sueldoNeto())
 }
+
+test "bono resultado porcentual" {
+	pepe.categoria(gerente)
+	pepe.bonoPorResultado(porcentual)
+	assert.equals(1500, pepe.valorPorResultado())
+}
+
+test "bono resultado fijo" {
+	pepe.bonoPorResultado(fijo)
+	assert.equals(800, pepe.valorPorResultado())
+}
+
+test "bono resultado nulo" {
+	pepe.bonoPorResultado(bonoResultadoNulo)
+	assert.equals(0, pepe.valorPorResultado())
+}
+
+test "bono presentismo nulo" {
+	pepe.bonoPorPresentismo(bonoPresentismoNulo)
+	assert.equals(0, pepe.valorPorPresentismo())
+}
+
+test "bono presentismo normal" {
+	pepe.bonoPorPresentismo(normal)
+	pepe.faltas(0)
+	assert.equals(2000, pepe.valorPorPresentismo())
+	pepe.faltas(1)
+	assert.equals(1000, pepe.valorPorPresentismo())
+	pepe.faltas(2)
+	assert.equals(0, pepe.valorPorPresentismo())
+	pepe.faltas(3)
+	assert.equals(0, pepe.valorPorPresentismo())
+}
+
+test "bono ajuste" {
+	pepe.bonoPorPresentismo(ajuste)
+	pepe.faltas(0)
+	assert.equals(100, pepe.valorPorPresentismo())
+	pepe.faltas(1)
+	assert.equals(0, pepe.valorPorPresentismo())
+}
+
+test "bono demagocio" {
+	pepe.bonoPorPresentismo(demagogico)
+	pepe.categoria(gerente)
+	assert.equals(500, pepe.valorPorPresentismo())
+	pepe.categoria(cadete)
+	assert.equals(300, pepe.valorPorPresentismo())
+}
+
+test "sueldo pepe" {
+	//1. Hacer un test con pepe como cadete
+	pepe.categoria(cadete)
+	//con bono resultado de monto fijo,
+	pepe.bonoPorResultado(fijo) 
+	//y bono presentismo normal. 
+	pepe.bonoPorPresentismo(normal)
+	//Simular que faltó 3 días.
+	pepe.faltas(3)
+	
+	//Debería tener $20800 de sueldo.
+	assert.equals(20800, pepe.sueldo())
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

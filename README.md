@@ -22,7 +22,8 @@ Tener en cuenta que puede haber más categorías.
 
 ### Bono por resultados
 
-Pepe tiene un bono por resultados que va cambiando a lo largo del tiempo. Sabemos que hay tres posibilidades para el **bono por resultados**:  
+Pepe tiene un bono por resultados que va cambiando a lo largo del tiempo. 
+Sabemos que hay tres posibilidades para el **bono por resultados**:  
 * _Porcentaje_: 10% sobre el neto.  
 * _Monto fijo_: $800 fijos.
 * _Nulo_: nada.
